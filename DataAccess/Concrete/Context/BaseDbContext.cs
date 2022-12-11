@@ -15,7 +15,9 @@ namespace DataAccess.Concrete.Context
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Server=(localdb)\mssqllocaldb;Database=EczanemDb;Trusted_Connection=true");
+            optionsBuilder.UseSqlServer
+                (@"Server=(localdb)\mssqllocaldb;Database=EczanemDb;Trusted_Connection=true;ConnectRetryCount=0",
+                options => options.EnableRetryOnFailure());
         }
 
         public DbSet<User> Users { get; set; }
