@@ -44,10 +44,14 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult Delete(User user)
+        public IResult Delete(int id)
         {
-            _userRepository.Delete(user);
+            var user = _userRepository.Get(u => u.Id == id);
 
+            if (user != null)
+            {
+                _userRepository.Delete(user);
+            }
             return new SuccessResult();
         }
     }
