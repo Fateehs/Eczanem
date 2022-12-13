@@ -22,20 +22,26 @@ namespace Core.DataAccess.Concrete
 
         protected TContext Context { get; }
 
-        public TEntity Add(TEntity entity)
+        public void Add(TEntity entity)
         {
-            return Context.Add(entity).Entity;
+
+            var addedEntity = Context.Entry(entity);
+            addedEntity.State = EntityState.Added;
+            Context.SaveChanges();
         }
 
-        public TEntity Update(TEntity entity)
+        public void Update(TEntity entity)
         {
-            Context.Update(entity);
-            return entity;
+            var updatedEntity = Context.Entry(entity);
+            updatedEntity.State = EntityState.Modified;
+            Context.SaveChanges();
         }
 
         public void Delete(TEntity entity)
         {
-            Context.Remove(entity);
+            var deletedEntity = Context.Entry(entity);
+            deletedEntity.State = EntityState.Deleted;
+            Context.SaveChanges();
         }
 
         public List<TEntity> GetAll(Expression<Func<TEntity, bool>> filter = null)
