@@ -1,5 +1,4 @@
-﻿using Azure.Core;
-using Business.Abstract;
+﻿using Business.Abstract;
 using Core.Entities.Concrete.DTOs;
 using Core.Entities.Concretes;
 using Core.Utilities.Results.Abstract;
@@ -11,7 +10,6 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using AccessToken = Core.Utilities.Security.JWT.AccessToken;
 
 namespace Business.Concrete
 {
