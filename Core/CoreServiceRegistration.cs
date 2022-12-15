@@ -1,6 +1,4 @@
-﻿using Core.DataAccess.Abstract;
-using Core.DataAccess.Concrete;
-using Microsoft.Extensions.DependencyInjection;
+﻿using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
