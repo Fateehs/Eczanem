@@ -1,4 +1,5 @@
 ﻿using Business.Abstract;
+using Core.Entities.Concrete;
 using Core.Entities.Concretes;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
@@ -30,6 +31,11 @@ namespace Business.Concrete
             return new SuccessDataResult<User>(_userRepository.Get(u => u.Id == id));
         }
 
+        public IDataResult<User> GetByEmail(string email)
+        {
+            return new SuccessDataResult<User>(_userRepository.Get(u => u.Email == email));
+        }
+
         public IResult Add(User user)
         {
             _userRepository.Add(user);
@@ -49,10 +55,15 @@ namespace Business.Concrete
             var user = _userRepository.Get(u => u.Id == id);
 
             if (user != null)
-            {
+
                 _userRepository.Delete(user);
-            }
+
             return new SuccessResult();
+        }
+
+        public List<OperationClaim> GetClaims(User user)
+        {
+            return _userRepository.GetClaims(user);
         }
     }
 }
