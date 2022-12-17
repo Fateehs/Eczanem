@@ -1,4 +1,5 @@
-﻿using Core.Entities.Concretes;
+﻿using Core.Entities.Concrete;
+using Core.Entities.Concretes;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Options;
@@ -21,5 +22,7 @@ namespace DataAccess.Concrete.Context
         }
 
         public DbSet<User> Users { get; set; }
+        public DbSet<OperationClaim> OperationClaims { get; set; }
+        public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
     }
 }
