@@ -26,9 +26,23 @@ namespace WebAPI.Controllers
             var createAccessTokenResult = _authService.CreateAccessToken(result.Data);
             if (!result.Success) return BadRequest(result);
 
-            var createdAccessTokenDataWithSuccessResult = new SuccessDataResult<AccessToken>(createAccessTokenResult.Data);
+            var createdAccessTokenDataWithSuccessResult = new SuccessDataResult<AccessToken>(createAccessTokenResult.Data, result.Message);
 
             return Ok(createdAccessTokenDataWithSuccessResult);
+        }
+
+        [HttpPost("login")]
+        public IActionResult Login(LoginDTO loginDTO)
+        {
+            var result = _authService.Login(loginDTO);
+            if (!result.Success) return BadRequest(result);
+
+            var createAccessTokenResult = _authService.CreateAccessToken(result.Data);
+            if (!result.Success) return BadRequest(result);
+
+            var newSuccessDataResult = new SuccessDataResult<AccessToken>(createAccessTokenResult.Data, result.Message);
+            return Ok(newSuccessDataResult);
+
         }
     }
 }
