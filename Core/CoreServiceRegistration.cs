@@ -1,4 +1,5 @@
-﻿using Microsoft.Extensions.DependencyInjection;
+﻿using Core.Utilities.Security.JWT;
+using Microsoft.Extensions.DependencyInjection;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -11,6 +12,8 @@ namespace Core
     {
         public static IServiceCollection AddCoreServices(this IServiceCollection services)
         {
+            services.AddSingleton<ITokenHelper, JWTHelper>();
+
             return services;
         }
     }
