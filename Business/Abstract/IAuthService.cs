@@ -2,17 +2,13 @@
 using Core.Entities.Concretes;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Security.JWT;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Business.Abstract
 {
     public interface IAuthService
     {
         IDataResult<User> Register(RegisterDTO registerDTO, string password);
+        IDataResult<User> Login(LoginDTO loginDTO);
         IDataResult<AccessToken> CreateAccessToken(User user);
     }
 }
