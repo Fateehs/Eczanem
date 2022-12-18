@@ -46,7 +46,8 @@ namespace Business.Concrete
             var result = _userService.Add(user);
 
             if (!result.Success) return new ErrorDataResult<User>();
-            return new SuccessDataResult<User>();
+
+            return new SuccessDataResult<User>(user);
         }
 
         public IDataResult<User> Login(LoginDTO loginDTO)
