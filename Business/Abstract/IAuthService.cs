@@ -1,4 +1,4 @@
-﻿using Core.Entities.Concrete.DTOs;
+﻿using Core.Entities.Concrete.DTOs.Auth;
 using Core.Entities.Concretes;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Security.JWT;
