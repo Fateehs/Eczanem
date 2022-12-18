@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Core.Entities.Concrete.DTOs;
+using Core.Entities.Concrete.DTOs.Auth;
 using Core.Utilities.Results.Concrete;
 using Core.Utilities.Security.JWT;
 using Microsoft.AspNetCore.Mvc;
