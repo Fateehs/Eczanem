@@ -1,5 +1,5 @@
 ﻿using Business.Abstract;
-using Core.Entities.Concrete.DTOs;
+using Core.Entities.Concrete.DTOs.Auth;
 using Core.Entities.Concretes;
 using Core.Utilities.Business;
 using Core.Utilities.Results.Abstract;
