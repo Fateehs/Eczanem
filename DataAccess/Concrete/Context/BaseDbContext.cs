@@ -26,5 +26,7 @@ namespace DataAccess.Concrete.Context
         public DbSet<OperationClaim> OperationClaims { get; set; }
         public DbSet<UserOperationClaim> UserOperationClaims { get; set; }
         public DbSet<Customer> Customers { get; set; }
+        public DbSet<Pharmacy> Pharmacies { get; set; }
+        public DbSet<Courier> Couriers { get; set; }
     }
 }
