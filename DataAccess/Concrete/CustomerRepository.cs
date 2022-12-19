@@ -20,5 +20,21 @@ namespace DataAccess.Concrete
         public CustomerRepository(BaseDbContext context) : base(context)
         {
         }
+
+        public List<CustomerDTO> GetSyncCustomer(Expression<Func<Customer, bool>> filter = null)
+        {
+            var result = from customer in Context.Customers.Where(filter)
+                         join user in Context.Users
+                         on customer.UserId equals user.Id
+                         where customer.UserId == user.Id
+                         select new CustomerDTO
+                         {
+                             FirstName = user.FirstName,
+                             MiddleName = user.MiddleName,
+                             LastName = user.LastName,
+                             Email = user.Email
+                         };
+            return result.ToList();
+        }
     }
 }
