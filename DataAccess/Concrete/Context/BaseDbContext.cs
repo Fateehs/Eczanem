@@ -28,5 +28,6 @@ namespace DataAccess.Concrete.Context
         public DbSet<Customer> Customers { get; set; }
         public DbSet<Pharmacy> Pharmacies { get; set; }
         public DbSet<Courier> Couriers { get; set; }
+        public DbSet<Medicine> Medicines { get; set; }
     }
 }
