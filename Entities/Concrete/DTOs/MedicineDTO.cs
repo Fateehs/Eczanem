@@ -9,5 +9,10 @@ namespace Entities.Concrete.DTOs
 {
     public class MedicineDTO : IDTO
     {
+        public int Id { get; set; }
+        public string Name { get; set; }
+        public string PrescriptionType { get; set; }
+        public bool InStock { get; set; }
+        public string Stock { get; set; }
     }
 }
