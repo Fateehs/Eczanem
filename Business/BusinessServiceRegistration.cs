@@ -18,6 +18,7 @@ namespace Business
             services.AddScoped<ICustomerService, CustomerManager>();
             services.AddScoped<IPharmacyService, PharmacyManager>();
             services.AddScoped<ICourierService, CourierManager>();
+            services.AddScoped<IMedicineService, MedicineManager>();
 
             return services;
         }
