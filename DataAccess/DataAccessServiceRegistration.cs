@@ -17,6 +17,7 @@ namespace DataAccess
             services.AddScoped<ICustomerRepository, CustomerRepository>();
             services.AddScoped<IPharmacyRepository, PharmacyRepository>();
             services.AddScoped<ICourierRepository, CourierRepository>();
+            services.AddScoped<IMedicineRepository, MedicineRepository>();
 
             return services;
         }
