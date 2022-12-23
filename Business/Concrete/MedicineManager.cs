@@ -20,6 +20,7 @@ namespace Business.Concrete
         {
             _medicineRepository = medicineRepository;
         }
+
         public IDataResult<List<Medicine>> GetAll()
         {
             return new SuccessDataResult<List<Medicine>>(_medicineRepository.GetAll());
