@@ -2,6 +2,7 @@
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
+using DataAccess.Concrete;
 using Entities.Concrete;
 using System;
 using System.Collections.Generic;
@@ -14,10 +15,12 @@ namespace Business.Concrete
     public class PharmacyManager : IPharmacyService
     {
         IPharmacyRepository _pharmacyRepository;
+        IOrderRepository _orderRepository;
 
-        public PharmacyManager(IPharmacyRepository pharmacyRepository)
+        public PharmacyManager(IPharmacyRepository pharmacyRepository, IOrderRepository orderRepository)
         {
             _pharmacyRepository = pharmacyRepository;
+            _orderRepository = orderRepository;
         }
 
         public IDataResult<List<Pharmacy>> GetAll()
@@ -28,6 +31,17 @@ namespace Business.Concrete
         public IDataResult<Pharmacy> GetById(int id)
         {
             return new SuccessDataResult<Pharmacy>(_pharmacyRepository.Get(p => p.Id == id));
+        }
+
+        public IResult ReadyForDelivery(Order order)
+        {
+            var result = CheckTheOrderIsReadyForDelivery(order);
+
+            if (!result.Success)
+
+                ChangeDeliveryStatus(order);
+
+            return new SuccessResult();
         }
 
         public IResult Add(Pharmacy pharmacy)
@@ -51,6 +65,30 @@ namespace Business.Concrete
             if (pharmacy != null)
 
                 _pharmacyRepository.Delete(pharmacy);
+
+            return new SuccessResult();
+        }
+
+        public IResult CheckTheOrderIsReadyForDelivery(Order order)
+        {
+            _orderRepository.Get(o => o.ReadyForDelivery != true);
+
+            return new ErrorResult();
+        }
+
+        public IResult ChangeDeliveryStatus(Order order)
+        {
+            order = new Order
+            {
+                Id = order.Id,
+                UserId = order.UserId,
+                CourierId = null,
+                MedicineId = order.MedicineId,
+                OrderNumber = order.OrderNumber,
+                ReadyForDelivery = true,
+            };
+
+            _orderRepository.Update(order);
 
             return new SuccessResult();
         }
