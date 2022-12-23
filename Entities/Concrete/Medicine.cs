@@ -12,7 +12,7 @@ namespace Entities.Concrete
         public int Id { get; set; }
         public string Name { get; set; }
         public string PrescriptionType { get; set; }
-        public bool InStock { get; set; }
+        public bool StockStatus { get; set; }
         public string Stock { get; set; }
     }
 }
