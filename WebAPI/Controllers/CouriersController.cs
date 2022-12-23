@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -16,7 +17,7 @@ namespace WebAPI.Controllers
             _courierService = courierService;
         }
 
-        [HttpGet]
+        [HttpGet("getall")]
         public IActionResult GetAll()
         {
             var result = _courierService.GetAll();
@@ -25,7 +26,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet]
+        [HttpGet("getbyid")]
         public IActionResult GetById(int id)
         {
             var result = _courierService.GetById(id);
@@ -34,7 +35,16 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("acceptdelivery")]
+        public IActionResult AcceptDelivery(AssignCourierDTO assignCourierDTO)
+        {
+            var result = _courierService.AcceptDelivery(assignCourierDTO);
+
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPost("add")]
         public IActionResult Add(Courier courier)
         {
             var result = _courierService.Add(courier);
@@ -43,7 +53,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("update")]
         public IActionResult Update(Courier courier)
         {
             var result = _courierService.Update(courier);
@@ -52,7 +62,7 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost]
+        [HttpPost("delete")]
         public IActionResult Delete(int id)
         {
             var result = _courierService.Delete(id);

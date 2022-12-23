@@ -35,6 +35,15 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpPost("readyfordeliver")]
+        public IActionResult ReadyForDeliver(Order order)
+        {
+            var result = _pharmacyService.ReadyForDelivery(order);
+
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
         [HttpPost("add")]
         public IActionResult Add(Pharmacy pharmacy)
         {
