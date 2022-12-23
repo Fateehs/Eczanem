@@ -1,11 +1,8 @@
 ﻿using Business.Abstract;
-using Core.Entities.Concrete.DTOs;
-using Core.Entities.Concretes;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
-
 
 namespace Business.Concrete
 {
