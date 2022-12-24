@@ -82,7 +82,7 @@ namespace Business.Concrete
             {
                 Id = order.Id,
                 UserId = order.UserId,
-                CourierId = null,
+                CourierId = order.CourierId,
                 MedicineId = order.MedicineId,
                 OrderNumber = order.OrderNumber,
                 ReadyForDelivery = true,
