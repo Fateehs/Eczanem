@@ -10,6 +10,6 @@ namespace DataAccess.Abstract
 {
     public interface IOrderRepository : IEntityRepository<Order>
     {
-        public List<Order> GetOrders();
+        public List<Order> ListOrdersToBeDelivered();
     }
 }
