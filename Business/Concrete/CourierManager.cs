@@ -34,7 +34,7 @@ namespace Business.Concrete
             return new SuccessDataResult<Courier>(_courierRepository.Get(c => c.Id == id));
         }
 
-        public IDataResult<List<Order>> GetOrders()
+        public IDataResult<List<Order>> ListOrdersToBeDelivered()
         {
             return new SuccessDataResult<List<Order>>(_orderRepository.GetOrders());
         }
