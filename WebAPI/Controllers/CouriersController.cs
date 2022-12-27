@@ -35,10 +35,10 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpGet("getorders")]
-        public IActionResult GetOrders()
+        [HttpGet("listorderstobedelivered")]
+        public IActionResult ListOrdersToBeDelivered()
         {
-            var result = _courierService.GetOrders();
+            var result = _courierService.ListOrdersToBeDelivered();
 
             if (!result.Success) return BadRequest(result);
             return Ok(result);
