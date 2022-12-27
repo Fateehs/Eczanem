@@ -13,7 +13,7 @@ namespace Business.Abstract
     {
         IDataResult<List<Courier>> GetAll();
         IDataResult<Courier> GetById(int id);
-        IDataResult<List<Order>> GetOrders();
+        IDataResult<List<Order>> ListOrdersToBeDelivered();
         IResult AcceptDelivery(AssignCourierDTO assignCourierDTO);
         IResult Add(Courier courier);
         IResult Update(Courier courier);
