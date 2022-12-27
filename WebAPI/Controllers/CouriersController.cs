@@ -35,6 +35,15 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("getorders")]
+        public IActionResult GetOrders()
+        {
+            var result = _courierService.GetOrders();
+
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
         [HttpPost("acceptdelivery")]
         public IActionResult AcceptDelivery(AssignCourierDTO assignCourierDTO)
         {
