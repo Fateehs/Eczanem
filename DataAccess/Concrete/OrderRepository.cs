@@ -17,7 +17,7 @@ namespace DataAccess.Concrete
         {
         }
 
-        public List<Order> GetOrders()
+        public List<Order> ListOrdersToBeDelivered()
         {
             var result = from o in Context.Orders
                          where o.ReadyForDelivery == true & o.CourierId == null
