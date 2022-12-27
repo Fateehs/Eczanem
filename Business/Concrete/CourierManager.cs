@@ -36,7 +36,7 @@ namespace Business.Concrete
 
         public IDataResult<List<Order>> ListOrdersToBeDelivered()
         {
-            return new SuccessDataResult<List<Order>>(_orderRepository.GetOrders());
+            return new SuccessDataResult<List<Order>>(_orderRepository.ListOrdersToBeDelivered());
         }
 
         public IResult AcceptDelivery(AssignCourierDTO assignCourierDTO)
