@@ -1,6 +1,7 @@
 ﻿using Business.Abstract;
 using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
+using Core.Utilities.Security.Confirmation;
 using DataAccess.Abstract;
 using Entities.Concrete;
 using Entities.Concrete.DTOs;
@@ -41,11 +42,7 @@ namespace Business.Concrete
 
         public IResult AcceptDelivery(AssignCourierDTO assignCourierDTO)
         {
-            var result = CheckOrderIsReadyForDelivery();
-
-            if (result.Success)
-
-                AssignCourier(assignCourierDTO);
+            AssignCourier(assignCourierDTO);
 
             return new SuccessResult();
         }
@@ -69,13 +66,6 @@ namespace Business.Concrete
             var courier = _courierRepository.Get(c => c.Id == id);
 
             _courierRepository.Delete(courier);
-
-            return new SuccessResult();
-        }
-
-        public IResult CheckOrderIsReadyForDelivery()
-        {
-            _orderRepository.Get(o => o.ReadyForDelivery == true);
 
             return new SuccessResult();
         }
