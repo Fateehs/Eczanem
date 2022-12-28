@@ -37,7 +37,7 @@ namespace Business.Concrete
         {
             var result = CheckTheOrderIsReadyForDelivery(order);
 
-            if (!result.Success)
+            if (!result.Success) return new ErrorResult();
 
                 ChangeDeliveryStatus(order);
 
@@ -73,7 +73,7 @@ namespace Business.Concrete
         {
             _orderRepository.Get(o => o.ReadyForDelivery != true);
 
-            return new ErrorResult();
+            return new SuccessResult();
         }
 
         public IResult ChangeDeliveryStatus(Order order)
