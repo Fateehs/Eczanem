@@ -33,13 +33,23 @@ namespace Business.Concrete
             return new SuccessDataResult<Pharmacy>(_pharmacyRepository.Get(p => p.Id == id));
         }
 
+        public IDataResult<List<Order>> ListOrders()
+        {
+            return new SuccessDataResult<List<Order>>(_orderRepository.ListOrdersToBePrepared());
+        }
+
+        //public IResult AcceptOrderFromCustomer(Order order)
+        //{
+        //    return null;
+        //}
+
         public IResult ReadyForDelivery(Order order)
         {
             var result = CheckTheOrderIsReadyForDelivery(order);
 
             if (!result.Success) return new ErrorResult();
 
-                ChangeDeliveryStatus(order);
+            ChangeDeliveryStatus(order);
 
             return new SuccessResult();
         }
