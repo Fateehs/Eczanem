@@ -3,16 +3,19 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 
 namespace Business.Concrete
 {
     public class CustomerManager : ICustomerService
     {
         ICustomerRepository _customerRepository;
+        IOrderRepository _orderRepository;
 
-        public CustomerManager(ICustomerRepository customerRepository)
+        public CustomerManager(ICustomerRepository customerRepository, IOrderRepository orderRepository)
         {
             _customerRepository = customerRepository;
+            _orderRepository = orderRepository;
         }
 
         public IDataResult<List<Customer>> GetAll()
@@ -28,6 +31,25 @@ namespace Business.Concrete
         public IDataResult<Customer> GetByUserId(int userId)
         {
             return new SuccessDataResult<Customer>(_customerRepository.Get(c => c.UserId == userId));
+        }
+
+        public IResult AddOrder(CustomerOrderDTO customerOrderDTO)
+        {
+            var order = new Order
+            {
+                Id = customerOrderDTO.OrderId,
+                PharmacyId = customerOrderDTO.PharmacyId,
+                CustomerId = customerOrderDTO.CustomerId,
+                CourierId = null,
+                MedicineId = customerOrderDTO.MedicineId,
+                OrderNumber = customerOrderDTO.OrderNumber,
+                OrderAcceptedFromPharmacy = false,
+                ReadyForDelivery = false
+            };
+
+            _orderRepository.Add(order);
+
+            return new SuccessResult();
         }
 
         public IResult Add(Customer customer)
