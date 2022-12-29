@@ -75,7 +75,7 @@ namespace Business.Concrete
             var order = new Order
             {
                 Id = assignCourierDTO.OrderId,
-                UserId = assignCourierDTO.UserId,
+                CustomerId = assignCourierDTO.CustomerId,
                 CourierId = assignCourierDTO.CourierId,
                 MedicineId = assignCourierDTO.MedicineId,
                 OrderNumber = assignCourierDTO.OrderNumber,
