@@ -11,5 +11,6 @@ namespace DataAccess.Abstract
     public interface IOrderRepository : IEntityRepository<Order>
     {
         public List<Order> ListOrdersToBeDelivered();
+        public List<Order> ListOrdersToBePrepared();
     }
 }
