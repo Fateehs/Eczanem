@@ -10,7 +10,7 @@ namespace Entities.Concrete.DTOs
     public class AssignCourierDTO : IDTO
     {
         public int OrderId { get; set; }
-        public int UserId { get; set; }
+        public int CustomerId { get; set; }
         public int CourierId { get; set; }
         public int MedicineId { get; set; }
         public string OrderNumber { get; set; }
