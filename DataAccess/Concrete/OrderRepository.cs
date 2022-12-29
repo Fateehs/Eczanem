@@ -28,9 +28,24 @@ namespace DataAccess.Concrete
                              MedicineId = o.MedicineId,
                              OrderNumber = o.OrderNumber,
                              ReadyForDelivery = o.ReadyForDelivery,
-                             UserId = o.UserId,
+                             CustomerId = o.CustomerId,
+                             PharmacyId = o.PharmacyId,
                          };
             return result.ToList();
+        }
+
+        public List<Order> ListOrdersToBePrepared()
+        {
+            var result = from o in Context.Orders
+                         join p in Context.Pharmacies
+                         on o.PharmacyId equals p.Id
+                         where o.PharmacyId == p.Id
+                         select new Order
+                         {
+                             PharmacyId = p.Id
+                         };
+            return result.ToList();
+
         }
     }
 }
