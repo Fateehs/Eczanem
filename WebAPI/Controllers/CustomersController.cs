@@ -1,5 +1,6 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
+using Entities.Concrete.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -38,6 +39,15 @@ namespace WebAPI.Controllers
         public IActionResult GetByUserId(int userId)
         {
             var result = _customerService.GetByUserId(userId);
+
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPost("addorder")]
+        public IActionResult AddOrder(CustomerOrderDTO customerOrderDTO)
+        {
+            var result = _customerService.AddOrder(customerOrderDTO);
 
             if (!result.Success) return BadRequest(result);
             return Ok(result);
