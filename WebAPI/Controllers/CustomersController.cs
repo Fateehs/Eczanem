@@ -44,14 +44,23 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
-        [HttpPost("addorder")]
-        public IActionResult AddOrder(CustomerOrderDTO customerOrderDTO)
+        [HttpGet("getconfirmationnumber")]
+        public IActionResult GetConfirmationNumber(string orderNumber)
         {
-            var result = _customerService.AddOrder(customerOrderDTO);
+            var result = _customerService.GetConfirmationNumber(orderNumber);
 
             if (!result.Success) return BadRequest(result);
             return Ok(result);
         }
+
+        //[HttpPost("addorder")]
+        //public IActionResult AddOrder(CustomerOrderDTO customerOrderDTO)
+        //{
+        //    var result = _customerService.AddOrder(customerOrderDTO);
+
+        //    if (!result.Success) return BadRequest(result);
+        //    return Ok(result);
+        //}
 
         [HttpPost("add")]
         public IActionResult Add(Customer customer)
