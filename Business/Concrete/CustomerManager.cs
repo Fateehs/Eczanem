@@ -33,24 +33,31 @@ namespace Business.Concrete
             return new SuccessDataResult<Customer>(_customerRepository.Get(c => c.UserId == userId));
         }
 
-        public IResult AddOrder(CustomerOrderDTO customerOrderDTO)
+        public IDataResult<Order> GetConfirmationNumber(string orderNumber)
         {
-            var order = new Order
-            {
-                Id = customerOrderDTO.OrderId,
-                PharmacyId = customerOrderDTO.PharmacyId,
-                CustomerId = customerOrderDTO.CustomerId,
-                CourierId = null,
-                MedicineId = customerOrderDTO.MedicineId,
-                OrderNumber = customerOrderDTO.OrderNumber,
-                OrderAcceptedFromPharmacy = false,
-                ReadyForDelivery = false
-            };
-
-            _orderRepository.Add(order);
-
-            return new SuccessResult();
+            return new SuccessDataResult<Order>(_orderRepository.Get(o => o.OrderNumber == orderNumber));
         }
+
+
+        // wrong method fix it
+        //public IResult AddOrder(CustomerOrderDTO customerOrderDTO)
+        //{
+        //    var order = new Order
+        //    {
+        //        Id = customerOrderDTO.OrderId,
+        //        PharmacyId = customerOrderDTO.PharmacyId,
+        //        CustomerId = customerOrderDTO.CustomerId,
+        //        CourierId = null,
+        //        MedicineId = customerOrderDTO.MedicineId,
+        //        OrderNumber = customerOrderDTO.OrderNumber,
+        //        OrderAcceptedFromPharmacy = false,
+        //        ReadyForDelivery = false
+        //    };
+
+        //    _orderRepository.Add(order);
+
+        //    return new SuccessResult();
+        //}
 
         public IResult Add(Customer customer)
         {
