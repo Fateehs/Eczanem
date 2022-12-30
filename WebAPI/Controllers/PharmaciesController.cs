@@ -35,6 +35,33 @@ namespace WebAPI.Controllers
             return Ok(result);
         }
 
+        [HttpGet("listorders")]
+        public IActionResult ListOrders()
+        {
+            var result = _pharmacyService.ListOrders();
+
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPost("givepackagetocourier")]
+        public IActionResult GivePackageToCourier(Order order)
+        {
+            var result = _pharmacyService.GivePackageToCourier(order);
+
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
+        [HttpPost("acceptorderfromcustomer")]
+        public IActionResult AcceptOrderFromCustomer(Order order)
+        {
+            var result = _pharmacyService.AcceptOrderFromCustomer(order);
+
+            if (!result.Success) return BadRequest(result);
+            return Ok(result);
+        }
+
         [HttpPost("readyfordeliver")]
         public IActionResult ReadyForDeliver(Order order)
         {
