@@ -42,7 +42,19 @@ namespace DataAccess.Concrete
                          where o.PharmacyId == p.Id
                          select new Order
                          {
-                             PharmacyId = p.Id
+                             Id = o.Id,
+                             PharmacyId = p.Id,
+                             CourierOnTheWay = false,
+                             CourierId = null,
+                             ConfirmationNumberFromCustomer = o.OrderNumber,
+                             CustomerId = o.CustomerId,
+                             GetPackageFromPharmacy = o.GetPackageFromPharmacy,
+                             GivePackageToCourier = o.GivePackageToCourier,
+                             OrderAcceptedFromPharmacy = true,
+                             MedicineId = o.MedicineId,
+                             OrderDelivered = false,
+                             OrderNumber = o.OrderNumber,
+                             ReadyForDelivery = false
                          };
             return result.ToList();
 
