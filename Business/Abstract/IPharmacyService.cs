@@ -12,6 +12,9 @@ namespace Business.Abstract
     {
         IDataResult<List<Pharmacy>> GetAll();
         IDataResult<Pharmacy> GetById(int id);
+        IDataResult<List<Order>> ListOrders();
+        IResult GivePackageToCourier(Order order);
+        IResult AcceptOrderFromCustomer(Order order);
         IResult ReadyForDelivery(Order order);
         IResult Add(Pharmacy pharmacy);
         IResult Update(Pharmacy pharmacy);
