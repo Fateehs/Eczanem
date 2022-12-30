@@ -248,21 +248,43 @@ namespace DataAccess.Migrations
 
                     SqlServerPropertyBuilderExtensions.UseIdentityColumn(b.Property<int>("Id"));
 
-                    b.Property<int>("CourierId")
+                    b.Property<string>("ConfirmationNumberFromCustomer")
+                        .IsRequired()
+                        .HasColumnType("nvarchar(max)");
+
+                    b.Property<int?>("CourierId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("CourierOnTheWay")
+                        .HasColumnType("bit");
+
+                    b.Property<int>("CustomerId")
+                        .HasColumnType("int");
+
+                    b.Property<bool>("GetPackageFromPharmacy")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("GivePackageToCourier")
+                        .HasColumnType("bit");
 
                     b.Property<int>("MedicineId")
                         .HasColumnType("int");
+
+                    b.Property<bool>("OrderAcceptedFromPharmacy")
+                        .HasColumnType("bit");
+
+                    b.Property<bool>("OrderDelivered")
+                        .HasColumnType("bit");
 
                     b.Property<string>("OrderNumber")
                         .IsRequired()
                         .HasColumnType("nvarchar(max)");
 
+                    b.Property<int>("PharmacyId")
+                        .HasColumnType("int");
+
                     b.Property<bool>("ReadyForDelivery")
                         .HasColumnType("bit");
-
-                    b.Property<int>("UserId")
-                        .HasColumnType("int");
 
                     b.HasKey("Id");
 
