@@ -40,9 +40,31 @@ namespace Business.Concrete
             return new SuccessDataResult<List<Order>>(_orderRepository.ListOrdersToBeDelivered());
         }
 
+        public IResult OrderDelivered(Order order)
+        {
+            var result = _orderRepository.Get(o => o.OrderNumber == order.OrderNumber);
+
+            if (result != null)
+
+                ChangeDeliveredStatus(order);
+
+            return new SuccessResult();
+        }
+
         public IResult AcceptDelivery(AssignCourierDTO assignCourierDTO)
         {
             AssignCourier(assignCourierDTO);
+
+            return new SuccessResult();
+        }
+
+        public IResult GetPackage(Order order)
+        {
+            var result = _orderRepository.Get(o => o.OrderNumber == order.OrderNumber);
+
+            if (result != null)
+
+                ChangePackageStatus(order);
 
             return new SuccessResult();
         }
@@ -80,6 +102,30 @@ namespace Business.Concrete
                 MedicineId = assignCourierDTO.MedicineId,
                 OrderNumber = assignCourierDTO.OrderNumber,
                 ReadyForDelivery = assignCourierDTO.ReadyForDelivery
+            };
+
+            _orderRepository.Update(order);
+
+            return new SuccessResult();
+        }
+
+        public IResult ChangePackageStatus(Order order)
+        {
+            order = new Order
+            {
+                GetPackageFromPharmacy = true
+            };
+
+            _orderRepository.Update(order);
+
+            return new SuccessResult();
+        }
+
+        public IResult ChangeDeliveredStatus(Order order)
+        {
+            order = new Order
+            {
+                OrderDelivered = true
             };
 
             _orderRepository.Update(order);
