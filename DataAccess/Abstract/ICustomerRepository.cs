@@ -2,7 +2,6 @@
 using Core.Entities.Concrete.DTOs;
 using Core.Entities.Concretes;
 using Entities.Concrete;
-using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
