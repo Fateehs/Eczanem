@@ -51,9 +51,9 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult AcceptDelivery(AssignCourierDTO assignCourierDTO)
+        public IResult AcceptDelivery(Order order)
         {
-            AssignCourier(assignCourierDTO);
+            AssignCourier(order);
 
             return new SuccessResult();
         }
@@ -92,16 +92,23 @@ namespace Business.Concrete
             return new SuccessResult();
         }
 
-        public IResult AssignCourier(AssignCourierDTO assignCourierDTO)
+        public IResult AssignCourier(Order order)
         {
-            var order = new Order
+            order = new Order
             {
-                Id = assignCourierDTO.OrderId,
-                CustomerId = assignCourierDTO.CustomerId,
-                CourierId = assignCourierDTO.CourierId,
-                MedicineId = assignCourierDTO.MedicineId,
-                OrderNumber = assignCourierDTO.OrderNumber,
-                ReadyForDelivery = assignCourierDTO.ReadyForDelivery
+                Id = order.Id,
+                CustomerId = order.CustomerId,
+                CourierId = order.CourierId,
+                MedicineId = order.MedicineId,
+                PharmacyId = order.PharmacyId,
+                OrderNumber = order.OrderNumber,
+                ConfirmationNumberFromCustomer = order.OrderNumber,
+                ReadyForDelivery = true,
+                OrderAcceptedFromPharmacy = true,
+                CourierOnTheWay = false,
+                GetPackageFromPharmacy  = false,
+                GivePackageToCourier = false,
+                OrderDelivered = false,
             };
 
             _orderRepository.Update(order);
@@ -113,7 +120,19 @@ namespace Business.Concrete
         {
             order = new Order
             {
-                GetPackageFromPharmacy = true
+                Id = order.Id,
+                CustomerId = order.CustomerId,
+                CourierId = order.CourierId,
+                MedicineId = order.MedicineId,
+                PharmacyId = order.PharmacyId,
+                OrderNumber = order.OrderNumber,
+                ConfirmationNumberFromCustomer = order.OrderNumber,
+                ReadyForDelivery = true,
+                OrderAcceptedFromPharmacy = true,
+                CourierOnTheWay = true,
+                GivePackageToCourier = true,
+                GetPackageFromPharmacy = true,
+                OrderDelivered = true,
             };
 
             _orderRepository.Update(order);
@@ -125,7 +144,19 @@ namespace Business.Concrete
         {
             order = new Order
             {
-                OrderDelivered = true
+                Id = order.Id,
+                CustomerId = order.CustomerId,
+                CourierId = order.CourierId,
+                MedicineId = order.MedicineId,
+                PharmacyId = order.PharmacyId,
+                OrderNumber = order.OrderNumber,
+                ConfirmationNumberFromCustomer = order.OrderNumber,
+                ReadyForDelivery = true,
+                OrderAcceptedFromPharmacy = true,
+                CourierOnTheWay = true,
+                GivePackageToCourier = true,
+                GetPackageFromPharmacy = true,
+                OrderDelivered = false,
             };
 
             _orderRepository.Update(order);
