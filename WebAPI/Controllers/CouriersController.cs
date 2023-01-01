@@ -1,6 +1,5 @@
 ﻿using Business.Abstract;
 using Entities.Concrete;
-using Entities.Concrete.DTOs;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
@@ -63,9 +62,9 @@ namespace WebAPI.Controllers
         }
 
         [HttpPost("acceptdelivery")]
-        public IActionResult AcceptDelivery(AssignCourierDTO assignCourierDTO)
+        public IActionResult AcceptDelivery(Order order)
         {
-            var result = _courierService.AcceptDelivery(assignCourierDTO);
+            var result = _courierService.AcceptDelivery(order);
 
             if (!result.Success) return BadRequest(result);
             return Ok(result);
