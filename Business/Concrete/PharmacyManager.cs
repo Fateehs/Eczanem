@@ -108,10 +108,17 @@ namespace Business.Concrete
             {
                 Id = order.Id,
                 CustomerId = order.CustomerId,
-                CourierId = null,
+                PharmacyId = order.PharmacyId,
+                CourierId = order.CourierId,
                 MedicineId = order.MedicineId,
                 OrderNumber = order.OrderNumber,
+                ConfirmationNumberFromCustomer = order.OrderNumber,
+                OrderAcceptedFromPharmacy = true,
                 ReadyForDelivery = true,
+                GivePackageToCourier = false,
+                CourierOnTheWay = false,
+                GetPackageFromPharmacy = false,
+                OrderDelivered = false
             };
 
             _orderRepository.Update(order);
@@ -123,7 +130,19 @@ namespace Business.Concrete
         {
             order = new Order
             {
-                OrderAcceptedFromPharmacy = true
+                Id = order.Id,
+                CustomerId = order.CustomerId,
+                PharmacyId = order.PharmacyId,
+                CourierId = order.CourierId,
+                MedicineId = order.MedicineId,
+                OrderNumber = order.OrderNumber,
+                ConfirmationNumberFromCustomer = order.OrderNumber,
+                OrderAcceptedFromPharmacy = true,
+                GivePackageToCourier = false,
+                CourierOnTheWay = false,
+                GetPackageFromPharmacy = false,
+                ReadyForDelivery = false,
+                OrderDelivered = false
             };
 
             _orderRepository.Update(order);
@@ -135,8 +154,19 @@ namespace Business.Concrete
         {
             order = new Order
             {
+                Id = order.Id,
+                CustomerId = order.CustomerId,
+                PharmacyId = order.PharmacyId,
+                CourierId = order.CourierId,
+                MedicineId = order.MedicineId,
+                OrderNumber = order.OrderNumber,
+                ConfirmationNumberFromCustomer = order.OrderNumber,
+                OrderAcceptedFromPharmacy = true,
+                ReadyForDelivery = true,
                 GivePackageToCourier = true,
-                CourierOnTheWay = true
+                CourierOnTheWay = false,
+                GetPackageFromPharmacy = false,
+                OrderDelivered = false
             };
 
             _orderRepository.Update(order);
