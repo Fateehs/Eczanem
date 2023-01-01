@@ -1,6 +1,5 @@
 ﻿using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
-using Entities.Concrete.DTOs;
 
 namespace Business.Abstract
 {
@@ -10,7 +9,6 @@ namespace Business.Abstract
         IDataResult<Customer> GetById(int id);
         IDataResult<Customer> GetByUserId(int userId);
         IDataResult<Order> GetConfirmationNumber(string orderNumber);
-        //IResult AddOrder(CustomerOrderDTO customerOrderDTO);
         IResult Add(Customer customer);
         IResult Update(Customer customer);
         IResult Delete(int id);
