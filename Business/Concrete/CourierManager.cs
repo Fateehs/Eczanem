@@ -4,7 +4,6 @@ using Core.Utilities.Results.Concrete;
 using Core.Utilities.Security.Confirmation;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Diagnostics.Metrics;
