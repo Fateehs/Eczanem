@@ -1,6 +1,5 @@
 ﻿using Core.Utilities.Results.Abstract;
 using Entities.Concrete;
-using Entities.Concrete.DTOs;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -16,7 +15,7 @@ namespace Business.Abstract
         IDataResult<List<Order>> ListOrdersToBeDelivered();
         IResult OrderDelivered(Order order);
         IResult GetPackage(Order order);
-        IResult AcceptDelivery(AssignCourierDTO assignCourierDTO);
+        IResult AcceptDelivery(Order order);
         IResult Add(Courier courier);
         IResult Update(Courier courier);
         IResult Delete(int id);
