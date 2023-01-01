@@ -3,7 +3,6 @@ using Core.Utilities.Results.Abstract;
 using Core.Utilities.Results.Concrete;
 using DataAccess.Abstract;
 using Entities.Concrete;
-using Entities.Concrete.DTOs;
 
 namespace Business.Concrete
 {
@@ -38,33 +37,13 @@ namespace Business.Concrete
             return new SuccessDataResult<Order>(_orderRepository.Get(o => o.OrderNumber == orderNumber));
         }
 
-
-        // wrong method fix it
-        //public IResult AddOrder(CustomerOrderDTO customerOrderDTO)
-        //{
-        //    var order = new Order
-        //    {
-        //        Id = customerOrderDTO.OrderId,
-        //        PharmacyId = customerOrderDTO.PharmacyId,
-        //        CustomerId = customerOrderDTO.CustomerId,
-        //        CourierId = null,
-        //        MedicineId = customerOrderDTO.MedicineId,
-        //        OrderNumber = customerOrderDTO.OrderNumber,
-        //        OrderAcceptedFromPharmacy = false,
-        //        ReadyForDelivery = false
-        //    };
-
-        //    _orderRepository.Add(order);
-
-        //    return new SuccessResult();
-        //}
-
         public IResult Add(Customer customer)
         {
             _customerRepository.Add(customer);
 
             return new SuccessResult();
         }
+
         public IResult Update(Customer customer)
         {
             _customerRepository.Update(customer);
